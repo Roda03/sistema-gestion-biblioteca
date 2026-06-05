@@ -11,5 +11,10 @@ export const anhadirLibro = async (req,res) => {
 };
 
 export const traerLibros = async (req,res) => {
-    return res.status(200).json(bibliotecaServices.obtenerLibros());
+    try {
+        const libros = await bibliotecaServices.obtenerLibros();
+        res.status(200).json(libros);
+    } catch (error) {
+        res.status(500).json({ mensaje: error.message });
+    }
 };
