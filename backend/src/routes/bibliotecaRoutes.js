@@ -5,5 +5,7 @@ const router = Router();
 
 router.get('/',bibliotecaController.traerLibros);
 router.post('/',bibliotecaController.anhadirLibro);
+router.get('/:id',bibliotecaController.traerLibroPorID);
+router.patch('/:id',bibliotecaController.actualizarDatosDelLibro);
 
 export default router;

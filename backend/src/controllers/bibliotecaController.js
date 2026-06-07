@@ -18,3 +18,27 @@ export const traerLibros = async (req,res) => {
         res.status(500).json({ mensaje: error.message });
     }
 };
+
+export const traerLibroPorID = async (req,res) => {
+    try {
+        const libro = await bibliotecaServices.registrarLibroPorId(req.params.id);
+        res.status(200).json({mensaje:"Libro consultado con exito",libro});
+    } catch (error) {
+        res.status(400).json({mensaje:error.message});
+    }
+};
+
+export const actualizarDatosDelLibro = async (req,res) => {
+    try {
+        const {titulo,autor,genero} = req.body;
+        const libroActualizado = {
+            titulo,
+            autor,
+            genero
+        };
+        const libro = await bibliotecaServices.modificarLibro(req.params.id,libroActualizado);
+        res.status(200).json({mensaje:"Libro actualizaco correctamente",libro})
+    } catch (error) {
+        res.status(400).json({mensaje:error.message});
+    }
+}
